@@ -3,9 +3,11 @@ import { AuroraText } from "./magicui/aurora-text";
 
 const NavBar = () => {
   return (
-    <div className="flex w-full justify-between bg-white shadow-lg">
+    <div className="h- flex w-full items-center justify-between bg-white px-2 py-1.5 shadow-lg">
       <p>icon here</p>
-      <AuroraText className="text-xl">Evergrow</AuroraText>
+      <AuroraText className="text-xl font-bold tracking-tighter md:text-3xl">
+        Evergrow
+      </AuroraText>
       <MenuIcon />
     </div>
   );
