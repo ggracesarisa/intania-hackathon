@@ -1,41 +1,52 @@
 "use client";
 
-import React, { useState } from "react";
-import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, Sector } from "recharts";
+import Image from "next/image";
+import { useState } from "react";
+import {
+  Bar,
+  BarChart,
+  Cell,
+  Legend,
+  Pie,
+  PieChart,
+  ResponsiveContainer,
+  Sector,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 
-type CourseData = {
+interface CourseData {
   timeSpent: string;
   accuracy: string;
-};
+}
 
-type CourseStats = {
+interface CourseStats {
   [key: string]: CourseData;
-};
+}
 
 const courseStats: CourseStats = {
   "Prog meth": { timeSpent: "7 hours 4 mins", accuracy: "89%" },
   "Prob Stat": { timeSpent: "2 hours 0 mins", accuracy: "60%" },
   "Discrete Math": { timeSpent: "1 hour 30 mins", accuracy: "20%" },
-  "Data Structure": { timeSpent: "3 hours 10 mins", accuracy: "85%" }
+  "Data Structure": { timeSpent: "3 hours 10 mins", accuracy: "85%" },
 };
 
 const parseTime = (timeStr: string): number => {
   if (!timeStr) return 0;
-  
+
   try {
     if (timeStr.includes("hours")) {
       const [hoursPart, minsPart] = timeStr.split(" hours ");
       const hours = parseInt(hoursPart) || 0;
       const mins = parseInt(minsPart.replace(" mins", "")) || 0;
       return hours * 60 + mins;
-    }
-    else if (timeStr.includes("hour")) {
+    } else if (timeStr.includes("hour")) {
       const [hoursPart, minsPart] = timeStr.split(" hour ");
       const hours = parseInt(hoursPart) || 0;
       const mins = parseInt(minsPart.replace(" mins", "")) || 0;
       return hours * 60 + mins;
-    }
-    else if (timeStr.includes("mins")) {
+    } else if (timeStr.includes("mins")) {
       const mins = parseInt(timeStr.replace(" mins", "")) || 0;
       return mins;
     }
@@ -47,20 +58,21 @@ const parseTime = (timeStr: string): number => {
 };
 
 const totalTimeSpent = Object.values(courseStats).reduce(
-  (acc, data) => acc + parseTime(data.timeSpent), 
-  0
+  (acc, data) => acc + parseTime(data.timeSpent),
+  0,
 );
 
 const pieData = Object.entries(courseStats).map(([course, data]) => ({
   name: course,
   value: parseTime(data.timeSpent),
-  percentage: totalTimeSpent > 0 ? (parseTime(data.timeSpent) / totalTimeSpent) * 100 : 0,
-  timeSpent: data.timeSpent
+  percentage:
+    totalTimeSpent > 0 ? (parseTime(data.timeSpent) / totalTimeSpent) * 100 : 0,
+  timeSpent: data.timeSpent,
 }));
 
 const barData = Object.entries(courseStats).map(([course, data]) => ({
   name: course,
-  accuracy: parseInt(data.accuracy.replace("%", "")) || 0
+  accuracy: parseInt(data.accuracy.replace("%", "")) || 0,
 }));
 
 const COLORS = ["#0088FE", "#FF8042", "#00C49F", "#FFBB28"];
@@ -77,7 +89,8 @@ export default function ChartsPage() {
   };
 
   const renderActiveShape = (props: any) => {
-    const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill } = props;
+    const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill } =
+      props;
 
     return (
       <g>
@@ -105,23 +118,25 @@ export default function ChartsPage() {
   };
 
   return (
-    <div className="max-w-full mx-auto p-5">
+    <div className="mx-auto max-w-full p-5">
       {/* Banner */}
-      <div className="relative w-full max-h-[400px] overflow-hidden mb-10">
-        <img 
-          src="/img/evergrow.png" 
-          alt="Banner" 
-          className="w-full h-full object-cover" 
+      <div className="relative mb-10 max-h-[400px] w-full overflow-hidden">
+        <Image
+          src="/img/evergrow.png"
+          alt="Banner"
+          className="h-full w-full object-cover"
         />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-3xl md:text-5xl font-bold text-center">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform text-center text-3xl font-bold text-white md:text-5xl">
           self discovery
         </div>
       </div>
 
       {/* Time Spent Chart with Box */}
-      <div className="bg-[#FFE4C4] rounded-[15px] p-[15px] shadow-md w-full max-w-[800px] mx-auto mb-5">
+      <div className="mx-auto mb-5 w-full max-w-[800px] rounded-[15px] bg-[#FFE4C4] p-[15px] shadow-md">
         <div className="flex flex-col items-center">
-          <h1 className="text-lg md:text-2xl font-bold  text-center">time spent chart</h1>
+          <h1 className="text-center text-lg font-bold md:text-2xl">
+            time spent chart
+          </h1>
           <ResponsiveContainer width="100%" height={250}>
             <PieChart>
               <Pie
@@ -138,8 +153,8 @@ export default function ChartsPage() {
                 onMouseLeave={onPieLeave}
               >
                 {pieData.map((entry, index) => (
-                  <Cell 
-                    key={`cell-${index}`} 
+                  <Cell
+                    key={`cell-${index}`}
                     fill={COLORS[index % COLORS.length]}
                   />
                 ))}
@@ -147,13 +162,14 @@ export default function ChartsPage() {
               <Tooltip
                 content={({ payload }) => {
                   if (!payload || payload.length === 0) return null;
-                  const { name, percentage, timeSpent } = payload[0].payload as {
+                  const { name, percentage, timeSpent } = payload[0]
+                    .payload as {
                     name: string;
                     percentage: number;
                     timeSpent: string;
                   };
                   return (
-                    <div className=" bg-white border rounded shadow">
+                    <div className="rounded border bg-white shadow">
                       <h4 className="font-bold">{name}</h4>
                       <p>Time Spent: {timeSpent}</p>
                       <p>Percentage: {percentage.toFixed(1)}%</p>
@@ -168,12 +184,14 @@ export default function ChartsPage() {
       </div>
 
       {/* Divider */}
-      <div className="w-full border-t-2 border-gray-300 my-5"></div>
+      <div className="my-5 w-full border-t-2 border-gray-300"></div>
 
       {/* Accuracy Chart with Box */}
-      <div className="bg-[#FFE4C4] rounded-[15px] p-[15px] shadow-md w-full max-w-[800px] mx-auto mb-5">
+      <div className="mx-auto mb-5 w-full max-w-[800px] rounded-[15px] bg-[#FFE4C4] p-[15px] shadow-md">
         <div className="flex flex-col items-center">
-          <h1 className="text-lg md:text-2xl font-bold mb-3 text-center">accuracy chart</h1>
+          <h1 className="mb-3 text-center text-lg font-bold md:text-2xl">
+            accuracy chart
+          </h1>
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={barData}>
               <XAxis dataKey="name" />
@@ -186,18 +204,19 @@ export default function ChartsPage() {
       </div>
 
       {/* Divider */}
-      <div className="w-full border-t-2 border-gray-300 my-5"></div>
+      <div className="my-5 w-full border-t-2 border-gray-300"></div>
 
       {/* Suggestion Box */}
-      <div className="bg-[#FFE4C4] rounded-[15px] p-5 shadow-md w-full max-w-[800px] mx-auto">
-        <h3 className="text-lg font-bold mb-2">suggestion</h3>
+      <div className="mx-auto w-full max-w-[800px] rounded-[15px] bg-[#FFE4C4] p-5 shadow-md">
+        <h3 className="mb-2 text-lg font-bold">suggestion</h3>
         <p>
           You spent the least amount of time <br />
-          on <span className="font-semibold">Discrete Math</span> and the accuracy is{" "}
-          <span className="font-semibold">20%</span>
+          on <span className="font-semibold">Discrete Math</span> and the
+          accuracy is <span className="font-semibold">20%</span>
         </p>
-        <p className="text-red-600 font-semibold mt-2">
-          Try spending more time on "Discrete Math" to improve your understanding
+        <p className="mt-2 font-semibold text-red-600">
+          Try spending more time on "Discrete Math" to improve your
+          understanding
         </p>
       </div>
     </div>

@@ -1,25 +1,23 @@
 "use client";
-import React from 'react';
-import { useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from "next/image";
+import { useState } from "react";
 
 const AssignmentPage = () => {
   const [selectedMode, setSelectedMode] = useState<string | null>(null);
-  
+
   const handleModeSelect = (mode: string) => {
     setSelectedMode(mode);
     // Here you would typically navigate to the game mode or update the UI
     console.log(`Selected mode: ${mode}`);
   };
-  
+
   return (
-    <div className="min-h-screen bg-cream-50">
+    <div className="bg-cream-50 min-h-screen">
       {/* Main Content */}
-      <main className="container mx-auto p-4 max-w-6xl">
+      <main className="container mx-auto max-w-6xl p-4">
         {/* Assignment Section */}
         <section className="mb-8">
-          <div className="flex items-center mb-3 border-b pb-2 border-amber-300">
+          <div className="mb-3 flex items-center border-b border-amber-300 pb-2">
             <Image
               src="/img/icon_assignment.png"
               alt="Assignment Icon"
@@ -29,20 +27,21 @@ const AssignmentPage = () => {
             />
             <h2 className="text-xl font-bold text-amber-800">Assignment 1</h2>
           </div>
-          
+
           <div className="mb-6">
-            <p className="text-red-600 font-bold text-lg">deadline 31/03/25</p>
-            <p className="font-bold mb-3 text-lg">20 points</p>
-            <p className="text-gray-800 font-medium">
-              รายละเอียดให้นักเรียนทำแบบทดสอบเรื่อง xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+            <p className="text-lg font-bold text-red-600">deadline 31/03/25</p>
+            <p className="mb-3 text-lg font-bold">20 points</p>
+            <p className="font-medium text-gray-800">
+              รายละเอียดให้นักเรียนทำแบบทดสอบเรื่อง
+              xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
               xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
             </p>
           </div>
         </section>
-        
+
         {/* Game Mode Selection */}
         <section>
-          <div className="flex items-center mb-5 border-b pb-2 border-amber-300">
+          <div className="mb-5 flex items-center border-b border-amber-300 pb-2">
             <Image
               src="/img/icon_gamemode.png"
               alt="Game Mode Icon"
@@ -50,17 +49,19 @@ const AssignmentPage = () => {
               height={24}
               className="mr-3"
             />
-            <h2 className="text-xl font-bold text-amber-800">Select Game Mode</h2>
+            <h2 className="text-xl font-bold text-amber-800">
+              Select Game Mode
+            </h2>
           </div>
-          
+
           {/* Game mode cards - Responsive grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {/* EduQuest */}
-            <button 
-              onClick={() => handleModeSelect('EduQuest')}
-              className="p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition duration-300 flex items-center"
+            <button
+              onClick={() => handleModeSelect("EduQuest")}
+              className="flex items-center rounded-xl bg-white p-6 shadow-md transition duration-300 hover:shadow-lg"
             >
-              <div className="w-16 h-16 rounded-full bg-amber-200 flex items-center justify-center mr-4 flex-shrink-0">
+              <div className="mr-4 flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-amber-200">
                 <Image
                   src="/img/icon_triangle.png"
                   alt="Triangle Icon"
@@ -71,13 +72,13 @@ const AssignmentPage = () => {
               </div>
               <span className="text-xl font-bold text-red-400">EduQuest</span>
             </button>
-            
+
             {/* Lightning Quiz */}
-            <button 
-              onClick={() => handleModeSelect('Lightning Quiz')}
-              className="p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition duration-300 flex items-center"
+            <button
+              onClick={() => handleModeSelect("Lightning Quiz")}
+              className="flex items-center rounded-xl bg-white p-6 shadow-md transition duration-300 hover:shadow-lg"
             >
-              <div className="w-16 h-16 rounded-full bg-amber-200 flex items-center justify-center mr-4 flex-shrink-0">
+              <div className="mr-4 flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-amber-200">
                 <Image
                   src="/img/icon_star.png"
                   alt="Star Icon"
@@ -86,15 +87,17 @@ const AssignmentPage = () => {
                   className="text-red-400"
                 />
               </div>
-              <span className="text-xl font-bold text-red-400">Hot Lava Quiz</span>
+              <span className="text-xl font-bold text-red-400">
+                Hot Lava Quiz
+              </span>
             </button>
-            
+
             {/* Pixel Jumper */}
-            <button 
-              onClick={() => handleModeSelect('Pixel Jumper')}
-              className="p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition duration-300 flex items-center"
+            <button
+              onClick={() => handleModeSelect("Pixel Jumper")}
+              className="flex items-center rounded-xl bg-white p-6 shadow-md transition duration-300 hover:shadow-lg"
             >
-              <div className="w-16 h-16 rounded-full bg-amber-200 flex items-center justify-center mr-4 flex-shrink-0">
+              <div className="mr-4 flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-amber-200">
                 <Image
                   src="/img/icon_rectangle.png"
                   alt="Square Icon"
@@ -103,12 +106,14 @@ const AssignmentPage = () => {
                   className="text-red-400"
                 />
               </div>
-              <span className="text-xl font-bold text-red-400">Pixel Jumper</span>
+              <span className="text-xl font-bold text-red-400">
+                Pixel Jumper
+              </span>
             </button>
           </div>
         </section>
       </main>
-      
+
       {/* Add this to your global CSS or as a style tag */}
       <style jsx global>{`
         .bg-cream-50 {
