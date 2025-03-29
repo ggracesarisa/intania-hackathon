@@ -1,15 +1,29 @@
-import { MenuIcon } from "lucide-react";
+"use client";
+import { FrontendRoutes } from "@/config/apiRoutes";
+import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
+import { HomeIcon, LogInIcon, MenuIcon } from "lucide-react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { AuroraText } from "./magicui/aurora-text";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+} from "./ui/dropdown-menu";
 
 const NavBar = () => {
+  const router = useRouter();
   return (
     <div className="flex w-full items-center justify-between bg-white px-4 py-2 shadow-lg">
       {/* Logo Icon */}
       <div className="flex items-center">
-        <img
+        <Image
           src="/img/icon.png"
           alt="Logo"
           className="h-8 w-8 md:h-12 md:w-12"
+          width={32}
+          height={32}
         />
       </div>
 
@@ -21,9 +35,29 @@ const NavBar = () => {
       </div>
 
       {/* Menu Icon */}
-      <div className="flex items-center">
-        <MenuIcon className="h-6 w-6 md:h-8 md:w-8" />
-      </div>
+      <DropdownMenu>
+        <DropdownMenuTrigger className="hover:bg-primary-foreground/20 rounded-lg p-1.5 transition-all hover:scale-105 hover:shadow-md">
+          <MenuIcon />
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuGroup>
+            <DropdownMenuItem
+              className="flex items-center space-x-1.5"
+              onClick={() => router.push(FrontendRoutes.HOME)}
+            >
+              <HomeIcon />
+              <>Home</>
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              className="flex items-center space-x-1.5"
+              onClick={() => router.push(FrontendRoutes.LOGIN)}
+            >
+              <LogInIcon />
+              <>Login</>
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </div>
   );
 };

@@ -1,4 +1,5 @@
 export enum FrontendRoutes {
-  HOME = "",
+  HOME = "/",
   COURSE = "/courses",
+  LOGIN = "/login",
 }
