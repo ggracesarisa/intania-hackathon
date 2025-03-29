@@ -1,4 +1,5 @@
 "use client";
+import { FrontendRoutes } from "@/config/apiRoutes";
 import { courseMock } from "@/mocks/courses";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -61,11 +62,12 @@ export default function Home() {
 
       {/* Course Cards - always 2 columns but responsive spacing and sizes */}
       <div className="mx-auto grid max-w-3xl grid-cols-2 gap-3 px-3 md:gap-4 md:px-6 lg:gap-6 lg:px-10">
-        {courseMock.map((course, index) => (
+        {courseMock.map((course) => (
           <div
             key={course.id}
             className="flex flex-col items-center overflow-hidden rounded-lg bg-amber-400 p-2 shadow-md md:p-4"
             style={{ backgroundColor: "#E1A186" }}
+            onClick={() => router.push(`${FrontendRoutes.COURSE}/${course.id}`)}
           >
             <div className="mb-1 text-center text-sm font-medium text-white md:text-base">
               {course.name}

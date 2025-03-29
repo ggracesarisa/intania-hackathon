@@ -1,7 +1,12 @@
 "use client";
 import { FrontendRoutes } from "@/config/apiRoutes";
 import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
-import { HomeIcon, LogInIcon, MenuIcon } from "lucide-react";
+import {
+  HomeIcon,
+  LogInIcon,
+  MenuIcon,
+  UserRoundSearchIcon,
+} from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { AuroraText } from "./magicui/aurora-text";
@@ -48,6 +53,15 @@ const NavBar = () => {
               <HomeIcon />
               <>Home</>
             </DropdownMenuItem>
+            <DropdownMenuItem
+              className="flex items-center space-x-1.5"
+              onClick={() => router.push(FrontendRoutes.SELF_DISCOVERY)}
+            >
+              <UserRoundSearchIcon />
+              <>Self Discovery</>
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+          <DropdownMenuGroup>
             <DropdownMenuItem
               className="flex items-center space-x-1.5"
               onClick={() => router.push(FrontendRoutes.LOGIN)}
