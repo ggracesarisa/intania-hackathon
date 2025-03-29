@@ -24,7 +24,7 @@ const NavBar = () => {
     <div className="flex w-full items-center justify-between bg-white px-4 py-2 shadow-lg">
       {/* Logo Icon */}
       <Link href="/" passHref>
-        <div className="border- flex items-center rounded-full border-transparent transition-all duration-300 hover:scale-110 hover:bg-gray-400">
+        <div className="border- flex items-center rounded-full border-transparent transition-all duration-300 hover:scale-110 hover:bg-green-200">
           <Image
             src="/img/icon.png"
             alt="Logo"

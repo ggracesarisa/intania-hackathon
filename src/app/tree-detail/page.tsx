@@ -11,28 +11,40 @@ import { useState } from "react";
 
 const Page = () => {
   const [selectedTab, setSelectedTab] = useState(1);
+  const [isBouncing, setIsBouncing] = useState(false);
 
   const handleTabClick = (tabIndex: number) => {
     setSelectedTab(tabIndex);
   };
 
+  const handleImageClick = () => {
+    setIsBouncing(true);
+    setTimeout(() => {
+      setIsBouncing(false);
+    }, 200); // Reset bounce after 500ms
+  };
+
   return (
     <div className="w-full">
-      <div className="flex h-60 flex-row justify-center">
+      <div className="flex h-full flex-row justify-center">
         <div className="pt-8">
-          <Link href="/">
-            <Image
-              src={"/tree-detail/bigfattree.png"}
-              alt="TreeImage"
-              width={177}
-              height={207}
-              className="mx-auto hover:scale-105"
-            />
-          </Link>
+          <Image
+            src={"/tree-detail/bigfattree.png"}
+            alt="TreeImage"
+            width={177}
+            height={207}
+            className={`mx-auto cursor-pointer transition-all duration-500 ${
+              isBouncing ? "scale-110" : "scale-105"
+            }`} // Adjust scale based on the isBouncing state
+            onClick={handleImageClick} // Add click event to trigger the bounce effect
+          />
+          <div className="mt-1 h-1.5 w-full rounded-full bg-white md:h-2">
+            <div className="h-1.5 rounded-full bg-green-400 md:h-2" style={{ width: `80%` }}></div>
+          </div>
         </div>
         <div className="ml-4">
           <span className="text-2xl font-bold">Prob Stat</span>
-          <ul className="mt-4 flex flex-col gap-4">
+          <ul className="mt-1 flex flex-col gap-4 mr-2">
             <li>
               <Remindercard />
             </li>

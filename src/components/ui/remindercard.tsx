@@ -4,16 +4,19 @@ import { useState } from "react";
 const ReminderCard = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const toggleOpen = () => {
+    setIsOpen((prev) => !prev); // Toggle the current state
+  };
+
   return (
     <div
-      className="group flex w-[13rem] cursor-pointer flex-col rounded-lg bg-[#E5CCBA] transition-all duration-300"
-      onMouseEnter={() => setIsOpen(true)}
-      onMouseLeave={() => setIsOpen(false)}
+      className="flex w-[13rem] cursor-pointer flex-col rounded-lg bg-[#E5CCBA] transition-all duration-300"
+      onClick={toggleOpen} // Change to onClick to toggle the dropdown
     >
       <div className="flex h-[2.4rem] flex-row items-center gap-2 pl-2">
         <span className="font-bold">Quiz 1</span>
         <span className="font-mono">29/01/2025</span>
-        <ChevronRight className="mr-2 ml-auto transition-transform duration-300 group-hover:rotate-90" />
+        <ChevronRight className={`mr-2 ml-auto transition-transform duration-300 ${isOpen ? 'rotate-90' : ''}`} />
       </div>
 
       <div
