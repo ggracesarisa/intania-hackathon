@@ -1,5 +1,6 @@
 "use client";
 
+import { FrontendRoutes } from "@/config/apiRoutes";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -103,7 +104,7 @@ export default function SignInPage() {
               console.log("SignIn successful:", user);
 
               // นำทางไปยังหน้า home (/)
-              router.push("/");
+              router.push(FrontendRoutes.HOME);
             } else {
               // ถ้าไม่พบผู้ใช้หรือรหัสผ่านไม่ถูกต้อง
               setErrors({
@@ -140,6 +141,8 @@ export default function SignInPage() {
               src="/img/evergrow.png"
               alt="EverGrow Logo"
               className="h-16 w-16 object-contain"
+              width={64}
+              height={64}
             />
           </div>
           <h1 className="text-center text-xl font-bold">EverGrow Sign In</h1>

@@ -140,6 +140,8 @@ export default function Register() {
               src="/img/evergrow.png"
               alt="EverGrow Logo"
               className="h-16 w-16 object-contain"
+              width={64}
+              height={64}
             />
           </div>
           <h1 className="text-center text-xl font-bold">EverGrow Register</h1>

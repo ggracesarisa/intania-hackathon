@@ -18,6 +18,8 @@ export default function SelfDiscoveryPage() {
           src="/img/evergrow.png"
           alt="Banner"
           className="h-full w-full object-cover"
+          width={200}
+          height={100}
         />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform text-center text-3xl font-bold text-white md:text-5xl">
           self discovery
