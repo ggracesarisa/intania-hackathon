@@ -2,9 +2,9 @@
 import { FrontendRoutes } from "@/config/apiRoutes";
 import { courseMock } from "@/mocks/courses";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import Link from 'next/link'
 
 export default function Home() {
   const [username, setUsername] = useState("");
@@ -56,7 +56,7 @@ export default function Home() {
 
       {/* User Garden Title - responsive text size */}
       <div className="px-4 py-2 md:px-8 md:py-4 lg:px-12">
-        <h2 className="text-xl font-bold md:text-2xl lg:text-3xl text-center">
+        <h2 className="text-center text-xl font-bold md:text-2xl lg:text-3xl">
           {username ? `${username}'s Garden` : "My Garden"}
         </h2>
       </div>
@@ -65,30 +65,32 @@ export default function Home() {
       <div className="mx-auto grid max-w-3xl grid-cols-2 gap-3 px-3 md:gap-4 md:px-6 lg:gap-6 lg:px-10">
         {courseMock.map((course) => (
           <Link href="/tree-detail" key={course.id} passHref>
-          <div
-            key={course.id}
-            className="flex flex-col items-center overflow-hidden rounded-lg bg-amber-400 p-2 shadow-md md:p-4 hover:scale-105 hover:cursor-pointer"
-            style={{ backgroundColor: "#E1A186" }}
-            onClick={() => router.push(`${FrontendRoutes.COURSE}/${course.id}`)}
-          >
-            <div className="mb-1 text-center text-sm font-medium text-white md:text-base">
-              {course.name}
+            <div
+              key={course.id}
+              className="flex flex-col items-center overflow-hidden rounded-lg bg-amber-400 p-2 shadow-md hover:scale-105 hover:cursor-pointer md:p-4"
+              style={{ backgroundColor: "#E1A186" }}
+              onClick={() =>
+                router.push(`${FrontendRoutes.COURSE}/${course.id}`)
+              }
+            >
+              <div className="mb-1 text-center text-sm font-medium text-white md:text-base">
+                {course.name}
+              </div>
+              <div className="relative my-1 h-12 w-12 md:my-2 md:h-16 md:w-16 lg:h-20 lg:w-20">
+                <Image
+                  src="/img/tree1.png"
+                  alt={course.name}
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div className="mt-1 h-1.5 w-full rounded-full bg-white md:h-2">
+                <div
+                  className="h-1.5 rounded-full bg-green-400 md:h-2"
+                  style={{ width: `${getRandomProgress()}%` }}
+                ></div>
+              </div>
             </div>
-            <div className="relative my-1 h-12 w-12 md:my-2 md:h-16 md:w-16 lg:h-20 lg:w-20">
-              <Image
-                src="/img/tree1.png"
-                alt={course.name}
-                fill
-                className="object-contain"
-              />
-            </div>
-            <div className="mt-1 h-1.5 w-full rounded-full bg-white md:h-2">
-              <div
-                className="h-1.5 rounded-full bg-green-400 md:h-2"
-                style={{ width: `${getRandomProgress()}%` }}
-              ></div>
-            </div>
-          </div>
           </Link>
         ))}
       </div>

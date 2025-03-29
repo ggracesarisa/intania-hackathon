@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
-import { Upload } from 'lucide-react';
-
+import { Upload } from "lucide-react";
+import React, { useState } from "react";
 
 type FileType = File | null;
 
@@ -8,15 +7,14 @@ const Uploadmaterialbutton = () => {
   const [file, setFile] = useState<FileType>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = e.target.files?.[0]; 
+    const selectedFile = e.target.files?.[0];
     if (selectedFile) {
       setFile(selectedFile);
     }
   };
 
-
   const handleButtonClick = () => {
-    const fileInput = document.getElementById('fileInput') as HTMLInputElement;
+    const fileInput = document.getElementById("fileInput") as HTMLInputElement;
     fileInput?.click();
   };
 
@@ -24,7 +22,7 @@ const Uploadmaterialbutton = () => {
     <div>
       <button
         onClick={handleButtonClick}
-        className="w-[142px] h-[142px] rounded-full bg-white border-8 border-black flex items-center justify-center text-black text-lg font-bold flex-col hover:cursor-pointer hover:scale-105"
+        className="flex h-[142px] w-[142px] flex-col items-center justify-center rounded-full border-8 border-black bg-white text-lg font-bold text-black hover:scale-105 hover:cursor-pointer"
       >
         <Upload width={63} height={63} />
       </button>

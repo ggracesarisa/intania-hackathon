@@ -8,6 +8,7 @@ import {
   UserRoundSearchIcon,
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { AuroraText } from "./magicui/aurora-text";
 import {
@@ -16,7 +17,6 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
 } from "./ui/dropdown-menu";
-import Link from 'next/link'
 
 const NavBar = () => {
   const router = useRouter();
@@ -24,11 +24,11 @@ const NavBar = () => {
     <div className="flex w-full items-center justify-between bg-white px-4 py-2 shadow-lg">
       {/* Logo Icon */}
       <Link href="/" passHref>
-        <div className="flex items-center hover:bg-gray-400 hover:scale-110 transition-all duration-300 rounded-full border- border-transparent">
+        <div className="border- flex items-center rounded-full border-transparent transition-all duration-300 hover:scale-110 hover:bg-gray-400">
           <Image
             src="/img/icon.png"
             alt="Logo"
-            className="h-8 w-8 md:h-12 md:w-12 transition-all duration-300"
+            className="h-8 w-8 transition-all duration-300 md:h-12 md:w-12"
             width={48} // Updated to match your image's display size
             height={48} // Same here
           />
