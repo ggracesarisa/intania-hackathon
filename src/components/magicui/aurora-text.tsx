@@ -5,7 +5,7 @@ import React, { memo } from "react";
 interface AuroraTextProps {
   children: React.ReactNode;
   className?: string;
-  colors?: string[];
+  colors?: Array<string>;
   speed?: number;
 }
 

@@ -40,17 +40,18 @@ const eslintConfig = [
           format: ["PascalCase"],
         },
       ],
-    },
-    "@typescript-eslint/no-empty-interface": "warn",
 
-    "no-restricted-syntax": [
-      "error",
-      {
-        selector:
-          "TSTypeAliasDeclaration[typeAnnotation.type='TSIntersectionType']",
-        message: "Use interfaces instead of type aliases for intersections.",
-      },
-    ],
+      "@typescript-eslint/no-empty-interface": "warn",
+
+      "no-restricted-syntax": [
+        "error",
+        {
+          selector:
+            "TSTypeAliasDeclaration[typeAnnotation.type='TSIntersectionType']",
+          message: "Use interfaces instead of type aliases for intersections.",
+        },
+      ],
+    },
   },
   {
     files: ["**/*.d.ts"],
