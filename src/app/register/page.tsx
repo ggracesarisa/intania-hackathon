@@ -65,9 +65,8 @@ export default function Register() {
     }
 
     // Telephone validation - must be in format xxx-xxx-xxxx
-    const telPattern = /^\d{3}-\d{3}-\d{4}$/;
-    if (!telPattern.test(formData.tel)) {
-      newErrors.tel = "กรุณากรอกเบอร์โทรในรูปแบบ 000-000-0000";
+    if (formData.tel && !/^\d{10}$/.test(formData.tel)) {
+      newErrors.tel = "กรุณากรอกเบอร์โทรในรูปแบบ 0000000000";
       isValid = false;
     }
 
@@ -164,16 +163,14 @@ export default function Register() {
             )}
           </div>
 
-          {/* Telephone Field */}
           <div className="mb-4">
             <input
               type="tel"
               name="tel"
               value={formData.tel}
               onChange={handleChange}
-              placeholder="Tel. (000-000-0000)"
+              placeholder="Tel. (0901231234)"
               className={`w-full border px-3 py-2 ${errors.tel ? "border-red-500" : "border-gray-300"} rounded-md focus:ring-2 focus:ring-green-500 focus:outline-none`}
-              required
             />
             {errors.tel && (
               <p className="mt-1 text-xs text-red-500">{errors.tel}</p>
