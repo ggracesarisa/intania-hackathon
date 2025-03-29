@@ -8,10 +8,10 @@ import { courseMock } from "@/mocks/courses";
 export default function Home() {
   const [username, setUsername] = useState("");
   const router = useRouter();
-  
+
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
-    
+
     if (storedUser) {
       try {
         const parsedUser = JSON.parse(storedUser);
@@ -59,8 +59,8 @@ export default function Home() {
       {/* Course Cards - always 2 columns but responsive spacing and sizes */}
       <div className="px-3 md:px-6 lg:px-10 grid grid-cols-2 gap-3 md:gap-4 lg:gap-6 max-w-3xl mx-auto">
         {courseMock.map((course, index) => (
-          <div 
-            key={course.id} 
+          <div
+            key={course.id}
             className="bg-amber-400 rounded-lg overflow-hidden shadow-md flex flex-col items-center p-2 md:p-4"
             style={{ backgroundColor: "#E1A186" }}
           >
@@ -76,8 +76,8 @@ export default function Home() {
               />
             </div>
             <div className="w-full bg-white rounded-full h-1.5 md:h-2 mt-1">
-              <div 
-                className="bg-green-400 h-1.5 md:h-2 rounded-full" 
+              <div
+                className="bg-green-400 h-1.5 md:h-2 rounded-full"
                 style={{ width: `${getRandomProgress()}%` }}
               ></div>
             </div>

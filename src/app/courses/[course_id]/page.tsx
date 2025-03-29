@@ -7,7 +7,7 @@ const Page = () => {
   const { course_id } = useParams<{ course_id: string }>();
   const router = useRouter();
   //fetch course data by id
-  const course = courseMock.find((c) => c.id == course_id);
+  const course = courseMock.find((c) => c.id === course_id);
 
   return (
     <main className="flex flex-col items-center justify-center">

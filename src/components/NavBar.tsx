@@ -7,14 +7,14 @@ const NavBar = () => {
       {/* Logo Icon */}
       <div className="flex items-center">
         <img
-          src="/img/icon.png" 
+          src="/img/icon.png"
           alt="Logo"
-          className="w-8 h-8 md:w-12 md:h-12"
+          className="h-8 w-8 md:h-12 md:w-12"
         />
       </div>
 
       {/* Title */}
-      <div className="flex-1 flex justify-center">
+      <div className="flex flex-1 justify-center">
         <AuroraText className="text-xl font-bold tracking-tighter md:text-3xl">
           EverGrow
         </AuroraText>
@@ -22,7 +22,7 @@ const NavBar = () => {
 
       {/* Menu Icon */}
       <div className="flex items-center">
-        <MenuIcon className="w-6 h-6 md:w-8 md:h-8" />
+        <MenuIcon className="h-6 w-6 md:h-8 md:w-8" />
       </div>
     </div>
   );
