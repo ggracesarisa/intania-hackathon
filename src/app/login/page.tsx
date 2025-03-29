@@ -1,11 +1,8 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 export default function Login() {
-  const router = useRouter();
-
   return (
     <div className="flex min-h-screen w-full items-center justify-center bg-amber-100 p-6">
       <div className="flex max-w-lg flex-col items-center">

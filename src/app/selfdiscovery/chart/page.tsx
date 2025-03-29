@@ -15,6 +15,8 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { PieSectorDataItem } from "recharts/types/polar/Pie";
+import { ActiveShape } from "recharts/types/util/types";
 
 interface CourseData {
   timeSpent: string;
@@ -23,6 +25,35 @@ interface CourseData {
 
 interface CourseStats {
   [key: string]: CourseData;
+}
+
+// Define types for chart data
+interface PieDataItem {
+  name: string;
+  value: number;
+  percentage: number;
+  timeSpent: string;
+}
+
+interface BarDataItem {
+  name: string;
+  accuracy: number;
+}
+
+// Define a more specific type for the active shape props
+interface ActiveShapeSectorProps {
+  cx: number;
+  cy: number;
+  innerRadius: number;
+  outerRadius: number;
+  startAngle: number;
+  endAngle: number;
+  fill: string;
+  payload?: PieDataItem;
+  percent?: number;
+  value?: number;
+  index?: number;
+  [key: string]: unknown;
 }
 
 const courseStats: CourseStats = {
@@ -62,25 +93,32 @@ const totalTimeSpent = Object.values(courseStats).reduce(
   0,
 );
 
-const pieData = Object.entries(courseStats).map(([course, data]) => ({
-  name: course,
-  value: parseTime(data.timeSpent),
-  percentage:
-    totalTimeSpent > 0 ? (parseTime(data.timeSpent) / totalTimeSpent) * 100 : 0,
-  timeSpent: data.timeSpent,
-}));
+const pieData: Array<PieDataItem> = Object.entries(courseStats).map(
+  ([course, data]) => ({
+    name: course,
+    value: parseTime(data.timeSpent),
+    percentage:
+      totalTimeSpent > 0
+        ? (parseTime(data.timeSpent) / totalTimeSpent) * 100
+        : 0,
+    timeSpent: data.timeSpent,
+  }),
+);
 
-const barData = Object.entries(courseStats).map(([course, data]) => ({
-  name: course,
-  accuracy: parseInt(data.accuracy.replace("%", "")) || 0,
-}));
+const barData: Array<BarDataItem> = Object.entries(courseStats).map(
+  ([course, data]) => ({
+    name: course,
+    accuracy: parseInt(data.accuracy.replace("%", "")) || 0,
+  }),
+);
 
 const COLORS = ["#0088FE", "#FF8042", "#00C49F", "#FFBB28"];
 
 export default function ChartsPage() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-  const onPieEnter = (_: any, index: number) => {
+  // Fix the event handler type
+  const onPieEnter = (_: unknown, index: number) => {
     setActiveIndex(index);
   };
 
@@ -88,7 +126,8 @@ export default function ChartsPage() {
     setActiveIndex(null);
   };
 
-  const renderActiveShape = (props: any) => {
+  // Use a more specific type for the active shape renderer
+  const renderActiveShape = (props: ActiveShapeSectorProps) => {
     const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill } =
       props;
 
@@ -142,8 +181,11 @@ export default function ChartsPage() {
           <ResponsiveContainer width="100%" height={250}>
             <PieChart>
               <Pie
-                activeIndex={activeIndex ?? undefined}
-                activeShape={renderActiveShape}
+                activeIndex={activeIndex !== null ? activeIndex : undefined}
+                // Use type assertion here to make TypeScript happy
+                activeShape={
+                  renderActiveShape as ActiveShape<PieSectorDataItem>
+                }
                 data={pieData}
                 dataKey="value"
                 nameKey="name"
@@ -164,17 +206,12 @@ export default function ChartsPage() {
               <Tooltip
                 content={({ payload }) => {
                   if (!payload || payload.length === 0) return null;
-                  const { name, percentage, timeSpent } = payload[0]
-                    .payload as {
-                    name: string;
-                    percentage: number;
-                    timeSpent: string;
-                  };
+                  const item = payload[0].payload as PieDataItem;
                   return (
                     <div className="rounded border bg-white shadow">
-                      <h4 className="font-bold">{name}</h4>
-                      <p>Time Spent: {timeSpent}</p>
-                      <p>Percentage: {percentage.toFixed(1)}%</p>
+                      <h4 className="font-bold">{item.name}</h4>
+                      <p>Time Spent: {item.timeSpent}</p>
+                      <p>Percentage: {item.percentage.toFixed(1)}%</p>
                     </div>
                   );
                 }}
@@ -217,8 +254,8 @@ export default function ChartsPage() {
           accuracy is <span className="font-semibold">20%</span>
         </p>
         <p className="mt-2 font-semibold text-red-600">
-          Try spending more time on "Discrete Math" to improve your
-          understanding
+          {`Try spending more time on "Discrete Math" to improve your
+          understanding`}
         </p>
       </div>
     </div>

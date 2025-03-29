@@ -8,7 +8,7 @@ const AssignmentPage = () => {
   const handleModeSelect = (mode: string) => {
     setSelectedMode(mode);
     // Here you would typically navigate to the game mode or update the UI
-    console.log(`Selected mode: ${mode}`);
+    console.log(`Selected mode: ${selectedMode}`);
   };
 
   return (

@@ -29,7 +29,6 @@ export const timeSlots = [
 ];
 
 const Page = () => {
-  const [appDate, setAppDate] = useState<Date>();
   const [appTime, setAppTime] = useState<string>("");
   return (
     <main className="w-full max-w-sm px-3 sm:px-4">

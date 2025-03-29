@@ -2,10 +2,10 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-interface BaseProps {
-  className?: string;
-  type?: string;
-}
+// interface BaseProps {
+//   className?: string;
+//   type?: string;
+// }
 
 type InputProps =
   | (React.InputHTMLAttributes<HTMLInputElement> & { type?: string })
