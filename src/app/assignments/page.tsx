@@ -12,7 +12,7 @@ const AssignmentPage = () => {
   };
 
   return (
-    <div className="bg-cream-50 min-h-screen">
+    <div className="bg-cream-50 min-h-screen mx-auto">
       {/* Main Content */}
       <main className="container mx-auto max-w-6xl p-4">
         {/* Assignment Section */}
@@ -41,7 +41,7 @@ const AssignmentPage = () => {
 
         {/* Game Mode Selection */}
         <section>
-          <div className="mb-5 flex items-center border-b border-amber-300 pb-2">
+          <div className="mb-5 flex items-center border-b border-amber-300 pb-2 mx-auto">
             <Image
               src="/img/icon_gamemode.png"
               alt="Game Mode Icon"

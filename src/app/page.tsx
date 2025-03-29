@@ -4,6 +4,7 @@ import { courseMock } from "@/mocks/courses";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Link from 'next/link'
 
 export default function Home() {
   const [username, setUsername] = useState("");
@@ -55,7 +56,7 @@ export default function Home() {
 
       {/* User Garden Title - responsive text size */}
       <div className="px-4 py-2 md:px-8 md:py-4 lg:px-12">
-        <h2 className="text-xl font-bold md:text-2xl lg:text-3xl">
+        <h2 className="text-xl font-bold md:text-2xl lg:text-3xl text-center">
           {username ? `${username}'s Garden` : "My Garden"}
         </h2>
       </div>
@@ -63,9 +64,10 @@ export default function Home() {
       {/* Course Cards - always 2 columns but responsive spacing and sizes */}
       <div className="mx-auto grid max-w-3xl grid-cols-2 gap-3 px-3 md:gap-4 md:px-6 lg:gap-6 lg:px-10">
         {courseMock.map((course) => (
+          <Link href="/tree-detail" key={course.id} passHref>
           <div
             key={course.id}
-            className="flex flex-col items-center overflow-hidden rounded-lg bg-amber-400 p-2 shadow-md md:p-4"
+            className="flex flex-col items-center overflow-hidden rounded-lg bg-amber-400 p-2 shadow-md md:p-4 hover:scale-105 hover:cursor-pointer"
             style={{ backgroundColor: "#E1A186" }}
             onClick={() => router.push(`${FrontendRoutes.COURSE}/${course.id}`)}
           >
@@ -87,6 +89,7 @@ export default function Home() {
               ></div>
             </div>
           </div>
+          </Link>
         ))}
       </div>
 
