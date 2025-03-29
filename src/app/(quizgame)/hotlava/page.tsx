@@ -1,13 +1,12 @@
 "use client";
-
 import { FrontendRoutes } from "@/config/apiRoutes";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { AssignmentData, GameState } from "../types";
 import { useGameLogic } from "./hooks/useGamelogic";
 import { sampleAssignment } from "./mocks/sample-assignment";
 
-export default function QuizGame() {
+function QuizGameContent() {
   const searchParams = useSearchParams();
   const assignmentId = searchParams.get("assignmentId");
   const [assignment, setAssignment] = useState<AssignmentData | null>(null);
@@ -39,6 +38,21 @@ export default function QuizGame() {
   return <GameContainer assignment={assignment} />;
 }
 
+// Main component with Suspense boundary
+export default function QuizGame() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex h-screen items-center justify-center">
+          Loading game...
+        </div>
+      }
+    >
+      <QuizGameContent />
+    </Suspense>
+  );
+}
+
 function GameContainer({ assignment }: { assignment: AssignmentData }) {
   const { gameState, startGame, checkAnswer } = useGameLogic(
     assignment.questions,
@@ -60,6 +74,7 @@ function GameContainer({ assignment }: { assignment: AssignmentData }) {
 
   return <div className="h-screen w-full">{renderGameScreen()}</div>;
 }
+
 // Components for different game screens
 const StartScreen = ({
   assignment,

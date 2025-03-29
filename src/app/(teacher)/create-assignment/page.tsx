@@ -12,7 +12,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { ArrowLeft } from "lucide-react";
 import { useState } from "react";
-export const timeSlots = [
+const timeSlots = [
   "09:00",
   "09:30",
   "10:00",
