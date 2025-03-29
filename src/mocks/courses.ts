@@ -19,4 +19,10 @@ export const courseMock: Array<Course> = [
     teacher_id: "004",
     description: "logic graph tree etc.",
   },
+  {
+    name: "Data Structure",
+    id: "004",
+    teacher_id: "002",
+    description: "arrays, linked lists, trees, graphs",
+  },
 ];
