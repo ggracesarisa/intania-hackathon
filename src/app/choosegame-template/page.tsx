@@ -1,9 +1,18 @@
 "use client";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { FileIcon, PaperclipIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { twJoin } from "tailwind-merge";
 
 const AssignmentPage = () => {
+  const router = useRouter();
   const [openTabs, setOpenTabs] = useState<Set<string>>(new Set()); // Use Set to track opened tabs
 
   const handleModeSelect = (mode: string) => {
@@ -66,26 +75,44 @@ const AssignmentPage = () => {
                 <span className="text-xl font-bold text-red-400">EduQuest</span>
               </button>
               <div
-                className={`h-80 w-full rounded-md bg-white shadow-md transition-all duration-300 ${
+                className={twJoin(
+                  "mt-2 flex h-80 w-full flex-col items-center overflow-hidden rounded-md bg-white p-4 shadow-md transition-all duration-300",
                   openTabs.has("EduQuest")
-                    ? "max-h-[200px] opacity-100"
-                    : "max-h-0 opacity-0"
-                } mt-2 flex flex-col items-center overflow-hidden p-4`}
+                    ? "max-h-[250px] opacity-100"
+                    : "max-h-0 opacity-0",
+                )}
               >
-                <div className="w-full gap-2">
+                <div className="w-full gap-2 space-y-3">
                   <span className="font-lg text-center">Lecture topic</span>
                   <select
                     id="countries"
+                    defaultValue="Thermodynamics" // ✅ Set the default selected option
                     className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                   >
-                    <option selected className="text-gray-700">
-                      Termodynamics
+                    <option value="Thermodynamics" className="text-gray-700">
+                      Thermodynamics
                     </option>
-                    <option value="US">Force & Motion</option>
-                    <option value="CA">Rotational Motion</option>
-                    <option value="FR">SHM</option>
-                    <option value="DE">Wave & Optic</option>
+                    <option value="Force & Motion">Force & Motion</option>
+                    <option value="Rotational Motion">Rotational Motion</option>
+                    <option value="SHM">SHM</option>
+                    <option value="Wave & Optic">Wave & Optic</option>
                   </select>
+                  <div className="flex items-center space-x-2">
+                    <PaperclipIcon />
+                    <span>Attachment reference materials</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <FileIcon />
+                    <span>Specify what students will turn in </span>
+                  </div>
+                  <div className="w-full">
+                    <p>Keywords</p>
+                    <div className="w-full items-center justify-between space-x-3">
+                      <Badge>heat</Badge>
+                      <Badge>engine</Badge>
+                      <Badge>power</Badge>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -113,13 +140,43 @@ const AssignmentPage = () => {
                 </span>
               </button>
               <div
-                className={`h-80 w-full rounded-md bg-white shadow-md transition-all duration-300 ${
+                className={twJoin(
+                  "mt-2 flex h-80 w-full flex-col items-center overflow-hidden rounded-md bg-white p-4 shadow-md transition-all duration-300",
                   openTabs.has("HotLava Quiz")
-                    ? "max-h-[200px] opacity-100"
-                    : "max-h-0 opacity-0"
-                } mt-2 flex flex-col items-center justify-center overflow-hidden p-4`}
+                    ? "max-h-[300px] opacity-100"
+                    : "max-h-0 opacity-0",
+                )}
               >
-                <div className="flex w-2xs flex-col items-center p-2 text-center"></div>
+                <div className="flex w-2xs flex-col justify-center space-y-3 p-2">
+                  <p>Qustion 1</p>
+                  <Input />
+                  <div className="grid w-full grid-cols-2 items-center justify-center gap-y-5">
+                    <div className="flex items-center space-x-1.5">
+                      <Checkbox />
+                      <Label>2</Label>
+                    </div>
+                    <div className="flex items-center space-x-1.5">
+                      <Checkbox />
+                      <Label>234!</Label>
+                    </div>
+                    <div className="flex items-center space-x-1.5">
+                      <Checkbox />
+                      <Label>5lne</Label>
+                    </div>
+                    <div className="flex items-center space-x-1.5">
+                      <Checkbox />
+                      <Label>All are correct</Label>
+                    </div>
+                  </div>
+                  <div>
+                    <p>Answer: </p>
+                    <Input />
+                  </div>
+                  <Button onClick={() => router.push("/hotlava")}>
+                    {" "}
+                    Go to Game
+                  </Button>
+                </div>
               </div>
             </div>
 
@@ -146,13 +203,47 @@ const AssignmentPage = () => {
                 </span>
               </button>
               <div
-                className={`h-80 w-full rounded-md bg-white shadow-md transition-all duration-300 ${
+                className={twJoin(
+                  "mt-2 flex h-80 w-full flex-col items-center overflow-hidden rounded-md bg-white p-4 shadow-md transition-all duration-300",
                   openTabs.has("Pixel Jumper")
-                    ? "max-h-[200px] opacity-100"
-                    : "max-h-0 opacity-0"
-                } mt-2 flex flex-col items-center justify-center overflow-hidden p-4`}
+                    ? "max-h-[300px] opacity-100"
+                    : "max-h-0 opacity-0",
+                )}
               >
-                <div className="flex w-2xs flex-col items-center p-2 text-center"></div>
+                <div className="flex w-2xs flex-col justify-center space-y-3 p-2">
+                  <p>Qustion 1</p>
+                  <Input />
+                  <div className="grid w-full grid-cols-2 items-center justify-center gap-y-5">
+                    <div className="flex items-center space-x-1.5">
+                      <Checkbox />
+                      <Label>2</Label>
+                    </div>
+                    <div className="flex items-center space-x-1.5">
+                      <Checkbox />
+                      <Label>234!</Label>
+                    </div>
+                    <div className="flex items-center space-x-1.5">
+                      <Checkbox />
+                      <Label>5lne</Label>
+                    </div>
+                    <div className="flex items-center space-x-1.5">
+                      <Checkbox />
+                      <Label>All are correct</Label>
+                    </div>
+                  </div>
+                  <div>
+                    <p>Answer: </p>
+                    <Input />
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <Button onClick={() => router.push("/pixeljumper")}>
+                      Go to Game
+                    </Button>
+                    <Button onClick={() => router.push("/pixeljumper/mobile")}>
+                      Go to Game (mobile)
+                    </Button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
