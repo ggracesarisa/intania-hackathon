@@ -59,13 +59,15 @@ export default function Home() {
       </div>
 
       {/* Course Cards - Always 2 columns */}
-      <div className="mx-auto grid max-w-3xl grid-cols-2 gap-6 md:gap-8 px-4">
+      <div className="mx-auto grid max-w-3xl grid-cols-2 gap-6 px-4 md:gap-8">
         {courseMock.map((course) => (
           <Link href="/tree-detail" key={course.id} passHref>
             <div
-              className="flex flex-col items-center rounded-lg bg-amber-400 p-5 sm:p-6 md:p-7 shadow-lg transition-transform hover:scale-105 hover:cursor-pointer"
+              className="flex flex-col items-center rounded-lg bg-amber-400 p-5 shadow-lg transition-transform hover:scale-105 hover:cursor-pointer sm:p-6 md:p-7"
               style={{ backgroundColor: "#E1A186" }}
-              onClick={() => router.push(`${FrontendRoutes.COURSE}/${course.id}`)}
+              onClick={() =>
+                router.push(`${FrontendRoutes.COURSE}/${course.id}`)
+              }
             >
               <div className="mb-2 text-center text-lg font-medium text-white sm:text-xl md:text-2xl">
                 {course.name}
