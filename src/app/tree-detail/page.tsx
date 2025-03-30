@@ -6,7 +6,6 @@ import Homeworkbanner from "@/components/ui/Homework/homeworkbanner";
 import Remindercard from "@/components/ui/remindercard";
 import { LibraryBig, Package } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
 
 const Page = () => {
@@ -39,12 +38,15 @@ const Page = () => {
             onClick={handleImageClick} // Add click event to trigger the bounce effect
           />
           <div className="mt-1 h-1.5 w-full rounded-full bg-white md:h-2">
-            <div className="h-1.5 rounded-full bg-green-400 md:h-2" style={{ width: `80%` }}></div>
+            <div
+              className="h-1.5 rounded-full bg-green-400 md:h-2"
+              style={{ width: `80%` }}
+            ></div>
           </div>
         </div>
         <div className="ml-4">
           <span className="text-2xl font-bold">Prob Stat</span>
-          <ul className="mt-1 flex flex-col gap-4 mr-2">
+          <ul className="mt-1 mr-2 flex flex-col gap-4">
             <li>
               <Remindercard />
             </li>

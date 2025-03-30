@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
 import Link from "next/link";
+import { useState } from "react";
 
 const AssignmentPage = () => {
   const [openTabs, setOpenTabs] = useState<Set<string>>(new Set()); // Use Set to track opened tabs
@@ -23,20 +23,20 @@ const AssignmentPage = () => {
   };
 
   return (
-    <div className="bg-cream-50 mx-auto w-full min-h-screen">
+    <div className="bg-cream-50 mx-auto min-h-screen w-full">
       {/* Main Content */}
-      <main className="container mx-auto max-w-6xl w-full p-4">
+      <main className="container mx-auto w-full max-w-6xl p-4">
         {/* Game Mode Selection */}
         <section>
           <div className="mx-auto mb-5 flex items-center border-b border-amber-300 pb-2">
             <Link href="/create-assignment" passHref>
-                <Image
+              <Image
                 src="/img/icon_leftarrow.png"
                 alt="Left Arrow Icon"
                 width={24}
                 height={24}
                 className="mr-3 hover:scale-110 hover:cursor-pointer"
-                />
+              />
             </Link>
             <h2 className="text-xl font-bold text-amber-800">
               Select Game Template
@@ -52,7 +52,7 @@ const AssignmentPage = () => {
                   toggleTab("EduQuest");
                   handleModeSelect("EduQuest");
                 }}
-                className="flex items-center rounded-xl w-full bg-[#FDF0D9] p-6 shadow-md transition duration-300 hover:shadow-lg hover:cursor-pointer"
+                className="flex w-full items-center rounded-xl bg-[#FDF0D9] p-6 shadow-md transition duration-300 hover:cursor-pointer hover:shadow-lg"
               >
                 <div className="mr-4 flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-amber-200">
                   <Image
@@ -66,18 +66,26 @@ const AssignmentPage = () => {
                 <span className="text-xl font-bold text-red-400">EduQuest</span>
               </button>
               <div
-                className={`w-full h-80 bg-white rounded-md shadow-md transition-all duration-300 ${
-                  openTabs.has("EduQuest") ? "max-h-[200px] opacity-100" : "max-h-0 opacity-0"
-                } overflow-hidden mt-2 p-4 flex flex-col items-center`}>
-                <div className="gap-2 w-full">
-                    <span className="font-lg text-center">Lecture topic</span>
-                    <select id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option selected className="text-gray-700">Termodynamics</option>
-                        <option value="US">Force & Motion</option>
-                        <option value="CA">Rotational Motion</option>
-                        <option value="FR">SHM</option> 
-                        <option value="DE">Wave & Optic</option>
-                    </select>
+                className={`h-80 w-full rounded-md bg-white shadow-md transition-all duration-300 ${
+                  openTabs.has("EduQuest")
+                    ? "max-h-[200px] opacity-100"
+                    : "max-h-0 opacity-0"
+                } mt-2 flex flex-col items-center overflow-hidden p-4`}
+              >
+                <div className="w-full gap-2">
+                  <span className="font-lg text-center">Lecture topic</span>
+                  <select
+                    id="countries"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                  >
+                    <option selected className="text-gray-700">
+                      Termodynamics
+                    </option>
+                    <option value="US">Force & Motion</option>
+                    <option value="CA">Rotational Motion</option>
+                    <option value="FR">SHM</option>
+                    <option value="DE">Wave & Optic</option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -89,7 +97,7 @@ const AssignmentPage = () => {
                   toggleTab("HotLava Quiz");
                   handleModeSelect("HotLava Quiz");
                 }}
-                className="flex items-center rounded-xl w-full bg-[#FDF0D9] p-6 shadow-md transition duration-300 hover:shadow-lg hover:cursor-pointer"
+                className="flex w-full items-center rounded-xl bg-[#FDF0D9] p-6 shadow-md transition duration-300 hover:cursor-pointer hover:shadow-lg"
               >
                 <div className="mr-4 flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-amber-200">
                   <Image
@@ -105,11 +113,13 @@ const AssignmentPage = () => {
                 </span>
               </button>
               <div
-                className={`w-full h-80 bg-white rounded-md shadow-md transition-all duration-300 ${
-                  openTabs.has("HotLava Quiz") ? "max-h-[200px] opacity-100" : "max-h-0 opacity-0"
-                } overflow-hidden mt-2 p-4 flex flex-col justify-center items-center`}>
-                <div className="flex flex-col w-2xs p-2 items-center text-center">
-                </div>
+                className={`h-80 w-full rounded-md bg-white shadow-md transition-all duration-300 ${
+                  openTabs.has("HotLava Quiz")
+                    ? "max-h-[200px] opacity-100"
+                    : "max-h-0 opacity-0"
+                } mt-2 flex flex-col items-center justify-center overflow-hidden p-4`}
+              >
+                <div className="flex w-2xs flex-col items-center p-2 text-center"></div>
               </div>
             </div>
 
@@ -120,7 +130,7 @@ const AssignmentPage = () => {
                   toggleTab("Pixel Jumper");
                   handleModeSelect("Pixel Jumper");
                 }}
-                className="flex items-center rounded-xl w-full bg-[#FDF0D9] p-6 shadow-md transition duration-300 hover:shadow-lg hover:cursor-pointer"
+                className="flex w-full items-center rounded-xl bg-[#FDF0D9] p-6 shadow-md transition duration-300 hover:cursor-pointer hover:shadow-lg"
               >
                 <div className="mr-4 flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-amber-200">
                   <Image
@@ -136,21 +146,23 @@ const AssignmentPage = () => {
                 </span>
               </button>
               <div
-                className={`w-full h-80 bg-white rounded-md shadow-md transition-all duration-300 ${
-                  openTabs.has("Pixel Jumper") ? "max-h-[200px] opacity-100" : "max-h-0 opacity-0"
-                } overflow-hidden mt-2 p-4 flex flex-col justify-center items-center`}>
-                <div className="flex flex-col w-2xs p-2 items-center text-center">
-                </div>
+                className={`h-80 w-full rounded-md bg-white shadow-md transition-all duration-300 ${
+                  openTabs.has("Pixel Jumper")
+                    ? "max-h-[200px] opacity-100"
+                    : "max-h-0 opacity-0"
+                } mt-2 flex flex-col items-center justify-center overflow-hidden p-4`}
+              >
+                <div className="flex w-2xs flex-col items-center p-2 text-center"></div>
               </div>
             </div>
           </div>
         </section>
       </main>
-      <div className="flex justify-center w-full mt-4">
-        <button className="bg-green-500 max-w-sm w-full text-white px-6 py-3 rounded-md cursor-pointer transition-colors duration-300 ease-in-out hover:bg-green-600 hover:font-semibold">
-            Assign
+      <div className="mt-4 flex w-full justify-center">
+        <button className="w-full max-w-sm cursor-pointer rounded-md bg-green-500 px-6 py-3 text-white transition-colors duration-300 ease-in-out hover:bg-green-600 hover:font-semibold">
+          Assign
         </button>
-        </div>
+      </div>
 
       {/* Add this to your global CSS or as a style tag */}
       <style jsx global>{`

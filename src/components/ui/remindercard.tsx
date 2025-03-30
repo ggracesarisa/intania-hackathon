@@ -1,5 +1,6 @@
 import { ChevronRight } from "lucide-react";
 import { useState } from "react";
+import { twJoin } from "tailwind-merge";
 
 const ReminderCard = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +17,12 @@ const ReminderCard = () => {
       <div className="flex h-[2.4rem] flex-row items-center gap-2 pl-2">
         <span className="font-bold">Quiz 1</span>
         <span className="font-mono">29/01/2025</span>
-        <ChevronRight className={`mr-2 ml-auto transition-transform duration-300 ${isOpen ? 'rotate-90' : ''}`} />
+        <ChevronRight
+          className={twJoin(
+            "mr-2 ml-auto transition-transform duration-300",
+            isOpen ? "rotate-90" : "",
+          )}
+        />
       </div>
 
       <div

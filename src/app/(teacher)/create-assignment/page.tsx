@@ -11,8 +11,8 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { ArrowLeft } from "lucide-react";
-import { useState } from "react";
 import Link from "next/link";
+import { useState } from "react";
 const timeSlots = [
   "09:00",
   "09:30",
@@ -82,9 +82,11 @@ const Page = () => {
           <Button className="w-2/5 rounded-md" variant={"destructive"}>
             Discard
           </Button>
-            <Button className="w-2/5 rounded-md" variant={"default"}>
-            < Link href="/choosegame-template" passHref>Continue</Link>
-            </Button>
+          <Button className="w-2/5 rounded-md" variant={"default"}>
+            <Link href="/choosegame-template" passHref>
+              Continue
+            </Link>
+          </Button>
         </div>
       </section>
     </main>
