@@ -1,7 +1,13 @@
+"use client";
+import { SparklesText } from "@/components/magicui/sparkles-text";
+import { Button } from "@/components/ui/button";
+import { FrontendRoutes } from "@/config/apiRoutes";
 import { courseMock } from "@/mocks/courses";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function SelfDiscoveryPage() {
+  const router = useRouter();
   // Mock data for course statistics
   const courseStats = {
     "Prog meth": { timeSpent: "7 hours 4 mins", accuracy: "89%" },
@@ -21,13 +27,16 @@ export default function SelfDiscoveryPage() {
           width={200}
           height={100}
         />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform text-center text-3xl font-bold text-white md:text-5xl">
-          self discovery
-        </div>
+        <SparklesText text="Self Discovery" />
       </div>
 
       {/* Course List */}
       <div className="flex flex-col gap-5 p-5 md:gap-8 lg:gap-10">
+        <Button
+          onClick={() => router.push(`${FrontendRoutes.SELF_DISCOVERY}/chart`)}
+        >
+          See Chart
+        </Button>
         {courseMock.map((course) => (
           <div
             key={course.id}
